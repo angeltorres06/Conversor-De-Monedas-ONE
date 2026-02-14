@@ -1,0 +1,8 @@
+# Archivos de configuración de IntelliJ
+.idea/
+*.iml
+
+# Archivos compilados de Java
+*.class
+out/
+target/
