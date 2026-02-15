@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class Principal {
@@ -5,6 +7,8 @@ public class Principal {
         Scanner lectura = new Scanner(System.in);
         int opcion = 0;
         ConsultarMoneda consulta = new ConsultarMoneda();
+        double cantidad = 0.0;
+        List<String> historial = new ArrayList<>();
 
         while (opcion != 7) {
             System.out.println("""
@@ -19,9 +23,20 @@ public class Principal {
                     7-Salir
                     *************************************************************************************FLOP
                     """);
-            opcion = lectura.nextInt();
+            try {
+                opcion = lectura.nextInt();
+            } catch (Exception e) {
+                System.out.println("Eso qué... Intenta escribiendo un número");
+                lectura.nextInt();
+                continue;
+            }
 
             if (opcion == 7){
+                System.out.println("--- HISTORIAL DE CONVERSIONES ---");
+                for (String transaccion : historial) {
+                    System.out.println(transaccion);
+                }
+                System.out.println("¡Gracias por usar el conversor!");
                 System.out.println("Saliendo de esta bongos...");
                 break;
             }
@@ -59,16 +74,26 @@ public class Principal {
                             "elije una opción correcta. :((");
                     continue;
             }
+
             System.out.println("Ingresa la cantidad que deseas convertir");
-            double cantidad = lectura.nextDouble();
+
+            try {
+                cantidad = lectura.nextDouble();
+            } catch (Exception e) {
+                System.out.println("Ingrese un número...");
+                lectura.nextDouble();
+                continue;
+            }
 
             try {
                 Monedas misMonedas = consulta.buscarMoneda(monedaBase, monedaTarget, cantidad);
-                System.out.println("El valor de " + cantidad + " [" + monedaBase + "] " +
+                String resultado = ("El valor de " + cantidad + " [" + monedaBase + "] " +
                         "corresponde al valor final de =>>> " + misMonedas.conversion_result() +
                         " [" + monedaTarget + "]");
+                System.out.println(resultado);
+                historial.add(resultado);
             } catch (Exception e) {
-                throw new RuntimeException(e);
+                System.out.println("Ocurrió un error inesperado...");;
             }
             }
 
