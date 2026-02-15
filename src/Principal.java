@@ -4,6 +4,7 @@ public class Principal {
     static void main() {
         Scanner lectura = new Scanner(System.in);
         int opcion = 0;
+        ConsultarMoneda consulta = new ConsultarMoneda();
 
         while (opcion != 7) {
             System.out.println("""
@@ -60,6 +61,15 @@ public class Principal {
             }
             System.out.println("Ingresa la cantidad que deseas convertir");
             double cantidad = lectura.nextDouble();
+
+            try {
+                Monedas misMonedas = consulta.buscarMoneda(monedaBase, monedaTarget, cantidad);
+                System.out.println("El valor de " + cantidad + " [" + monedaBase + "] " +
+                        "corresponde al valor final de =>>> " + misMonedas.conversion_result() +
+                        " [" + monedaTarget + "]");
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
             }
 
         }
