@@ -1,25 +1,66 @@
-import java.net.URI;
-import java.net.http.HttpClient;
-import java.net.http.HttpRequest;
-import java.net.http.HttpResponse;
+import java.util.Scanner;
 
 public class Principal {
     static void main() {
-        String cambio = "USD";
+        Scanner lectura = new Scanner(System.in);
+        int opcion = 0;
 
-        String clave = "b09aaf580ca32c7b9daf785e";
-        String direccion = "https://v6.exchangerate-api.com/v6/" +
-                clave + "/latest/" + cambio;
-        HttpClient client = HttpClient.newHttpClient();
-        HttpRequest request = HttpRequest.newBuilder()
-                .GET()
-                .uri(URI.create(direccion))
-                .build();
-        try {
-            HttpResponse<String> response = client
-                    .send(request, HttpResponse.BodyHandlers.ofString());
-        } catch (Exception e) {
-            throw new RuntimeException(e);
+        while (opcion != 7) {
+            System.out.println("""
+                    ****************************************************************************************
+                    Bienvenide al conversor de monedas.... :]]
+                    1-Dolar ==> Peso Mexicano
+                    2-Peso Mexicano ==> Dolar
+                    3-Dolar ==> Real Brasileño
+                    4-Real Brasileño ==> Dolar
+                    5-Dolar ==> Peso Colombiano
+                    6-Peso Colombiano ==> Dolar
+                    7-Salir
+                    *************************************************************************************FLOP
+                    """);
+            opcion = lectura.nextInt();
+
+            if (opcion == 7){
+                System.out.println("Saliendo de esta bongos...");
+                break;
+            }
+
+            String monedaBase = "";
+            String monedaTarget = "";
+
+            switch (opcion) {
+                case 1:
+                    monedaBase = "USD";
+                    monedaTarget = "MXN";
+                    break;
+                case 2:
+                    monedaBase = "MXN";
+                    monedaTarget = "USD";
+                    break;
+                case 3:
+                    monedaBase = "USD";
+                    monedaTarget = "BRL";
+                    break;
+                case 4:
+                    monedaBase = "BRL";
+                    monedaTarget = "USD";
+                    break;
+                case 5:
+                    monedaBase = "USD";
+                    monedaTarget = "COP";
+                    break;
+                case 6:
+                    monedaBase = "COP";
+                    monedaTarget = "USD";
+                    break;
+                default:
+                    System.out.println("Opción no válida... No seas grosero," +
+                            "elije una opción correcta. :((");
+                    continue;
+            }
+            System.out.println("Ingresa la cantidad que deseas convertir");
+            double cantidad = lectura.nextDouble();
+            }
+
         }
     }
-}
