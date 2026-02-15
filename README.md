@@ -27,4 +27,10 @@ ATENTO a tener instalado la librería GSON y a usar tu propia clave, pues he des
 
 TT
 
+# Capturas de pantalla...
+<img width="1046" height="289" alt="image" src="https://github.com/user-attachments/assets/f4ee219d-f361-4886-80bb-3edede0e4293" />
+<img width="1009" height="620" alt="image" src="https://github.com/user-attachments/assets/0a18caa7-3c23-455a-90ba-023a00e40d0a" />
+
+
+
 PSD: Icono extraído de flaticon. 
